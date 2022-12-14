@@ -1,24 +1,28 @@
-﻿using DeliveryApp.Models;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using DeliveryApp.Models;
 
-namespace DeliveryApp.Controllers
+namespace temp3.Controllers
 {
-    public class MenuController : Controller
+    public class HomeController : Controller
     {
-        private readonly ILogger<MenuController> _logger;
+        private readonly ILogger<HomeController> _logger;
 
-        public MenuController(ILogger<MenuController> logger)
+        public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
         }
 
-        public IActionResult Index()
+        public IActionResult StartPage()
         {
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult ProductMenu()
+        {
+            return View();
+        }
+        public IActionResult Cart()
         {
             return View();
         }
