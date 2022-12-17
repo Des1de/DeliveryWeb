@@ -1,0 +1,40 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<!DOCTYPE html>
+<html lang="en">
+<body class="d-flex flex-column min-vh-100">
+    <div id="header"></div>
+    <form action="landing.html" method="post" class="container md-12" enctype="multipart/form-data">
+        <h1 class="h3 mb-3 fw-normal">Регистрация</h1>
+        <div class="form-floating">
+            <input type="text" class="form-control" name="username" id="floatingInput" placeholder="логин">
+            <label for="floatingInput">Имя пользователя</label>
+        </div>
+        <div class="form-floating">
+            <input type="text" class="form-control" name="firstname" id="floatingInput" placeholder="имя">
+            <label for="floatingInput">Ваше имя</label>
+        </div>
+        <div class="form-floating">
+            <input type="text" class="form-control" name="surname" id="floatingInput" placeholder="фамилия">
+            <label for="floatingInput">Ваша фамилия</label>
+        </div>
+        <div class="form-floating">
+            <input type="text" class="form-control" name="adress" id="floatingInput" placeholder="адрес">
+            <label for="floatingInput">Адрес проживания</label>
+        </div>
+        <div class="form-floating">
+            <input type="tel" class="form-control" name="phone" id="floatingInput" placeholder="адресс"
+                   pattern="^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$" required>
+            <label for="floatingInput">Номер телефона</label>
+        </div>
+        <div class="form-floating">
+            <input type="password" class="form-control" name="passwordHash" id="floatingPassword" placeholder="пароль">
+            <label for="floatingPassword">Пароль</label>
+        </div>
+        <button class="w-100 btn btn-lg btn-primary" type="submit">Регистрация</button>
+    </form>
+</body>
+</html>

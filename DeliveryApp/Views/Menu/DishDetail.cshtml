@@ -1,0 +1,32 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model Dish
+
+
+<div class="container mt-5">
+        <div class="card">
+            <div class="card-body">
+
+                <div class="row">
+                   <div class="col-lg-5 col-md-5 col-sm-6">
+                    <div class="white-box text-center"><img src="@Model.Image" style="height: 350px; width: 350px; display: block;" class="img-responsive"></div>
+                </div>
+                    <div class="col-lg-7 col-md-7 col-sm-6">
+                        <h3 class="card-title">@Model.Name</h3>
+                        <h4 class="box-title mt-5">Описание товара</h4>
+                        <p>@Model.Description</p>
+                        <p class="mt-5">
+                            Цена: @Model.Price руб/ед
+                        <p>
+                            <br>
+                            <a class="btn btn-outline-primary btn-rounded" href="#">В корзину</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+   </div>
+
+

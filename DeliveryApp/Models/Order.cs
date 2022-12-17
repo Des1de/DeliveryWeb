@@ -13,7 +13,8 @@ namespace DeliveryApp.Models
         [ForeignKey("Address")]
         public int? AddressId { get; set; }
 
-        public ICollection<Dish> Dishes { get; set; }
+        [ForeignKey("Dish")]
+        public int? DishId { get; set;}
 
         [ForeignKey("AppUser")]
         public int? UserId { get; set;}

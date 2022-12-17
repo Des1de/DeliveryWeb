@@ -123,6 +123,9 @@ namespace DeliveryApp.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("DishId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.ToTable("Carts");
@@ -136,9 +139,6 @@ namespace DeliveryApp.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("CartId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
@@ -149,17 +149,10 @@ namespace DeliveryApp.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("OrderId")
-                        .HasColumnType("int");
-
                     b.Property<int>("Price")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CartId");
-
-                    b.HasIndex("OrderId");
 
                     b.ToTable("Dishes");
                 });
@@ -177,6 +170,9 @@ namespace DeliveryApp.Migrations
 
                     b.Property<string>("AppUserId")
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<int?>("DishId")
+                        .HasColumnType("int");
 
                     b.Property<int?>("UserId")
                         .HasColumnType("int");
@@ -324,17 +320,6 @@ namespace DeliveryApp.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("DeliveryApp.Models.Dish", b =>
-                {
-                    b.HasOne("DeliveryApp.Models.Cart", null)
-                        .WithMany("Dishes")
-                        .HasForeignKey("CartId");
-
-                    b.HasOne("DeliveryApp.Models.Order", null)
-                        .WithMany("Dishes")
-                        .HasForeignKey("OrderId");
-                });
-
             modelBuilder.Entity("DeliveryApp.Models.Order", b =>
                 {
                     b.HasOne("DeliveryApp.Models.AppUser", null)
@@ -396,16 +381,6 @@ namespace DeliveryApp.Migrations
             modelBuilder.Entity("DeliveryApp.Models.AppUser", b =>
                 {
                     b.Navigation("Orders");
-                });
-
-            modelBuilder.Entity("DeliveryApp.Models.Cart", b =>
-                {
-                    b.Navigation("Dishes");
-                });
-
-            modelBuilder.Entity("DeliveryApp.Models.Order", b =>
-                {
-                    b.Navigation("Dishes");
                 });
 #pragma warning restore 612, 618
         }

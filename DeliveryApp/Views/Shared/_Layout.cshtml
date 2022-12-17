@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/DeliveryApp.styles.css" asp-append-version="true" />
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
     <header class="p-3 bg-dark text-white"
             xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -22,10 +22,9 @@
                 </a>
 
                 <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                    <li><a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="StartPage">Главная</a></li>
-                    <li><a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="ProductMenu">Меню</a></li>
-                    <li><a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Cart">Корзина</a></li>
-                    <li><a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Admin">Админ-панель</a></li>
+                    <li><a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index">Главная</a></li>
+                    <li><a class="nav-link text-white" asp-area="" asp-controller="Menu" asp-action="Index">Меню</a></li>
+                    <li><a class="nav-link text-white" asp-area="" asp-controller="Cart" asp-action="Index">Корзина</a></li>
                 </ul>
                 <div class="flex-shrink-0 dropdown">
                     <a href="#" class="d-block link-light text-decoration-none dropdown-toggle" id="dropdownUser"
@@ -40,8 +39,8 @@
                 </div>
 
                 <div>
-                    <a class="btn btn-outline-light me-2" href="login.html">Вход</a>
-                    <a class="btn btn-warning" href="registration.html">Регистрация</a>
+                    <a class="btn btn-outline-light me-2" asp-area="" asp-controller="Account" asp-action="Login">Вход</a>
+                    <a class="btn btn-warning" asp-area="" asp-controller="Account" asp-action="Registration">Регистрация</a>
                 </div>
             </div>
         </div>

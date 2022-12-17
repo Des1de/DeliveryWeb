@@ -13,19 +13,12 @@ namespace temp3.Controllers
             _logger = logger;
         }
 
-        public IActionResult StartPage()
+        public IActionResult Index()
         {
             return View();
         }
 
-        public IActionResult ProductMenu()
-        {
-            return View();
-        }
-        public IActionResult Cart()
-        {
-            return View();
-        }
+       
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

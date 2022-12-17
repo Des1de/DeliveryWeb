@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DeliveryApp.Models
 {
@@ -7,6 +8,7 @@ namespace DeliveryApp.Models
         [Key]
         public int Id { get; set; }
 
-        public ICollection<Dish>? Dishes { get; set; }
+        [ForeignKey("Dish")]
+        public int DishId { get; set;}
     }
 }
