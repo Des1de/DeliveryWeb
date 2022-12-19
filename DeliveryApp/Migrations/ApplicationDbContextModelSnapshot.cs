@@ -130,6 +130,27 @@ namespace DeliveryApp.Migrations
                     b.ToTable("Carts");
                 });
 
+            modelBuilder.Entity("DeliveryApp.Models.CartDish", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("CartId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("DishId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CartId");
+
+                    b.ToTable("CartDishes");
+                });
+
             modelBuilder.Entity("DeliveryApp.Models.Dish", b =>
                 {
                     b.Property<int>("Id")
@@ -325,6 +346,15 @@ namespace DeliveryApp.Migrations
                     b.Navigation("UsersCart");
                 });
 
+            modelBuilder.Entity("DeliveryApp.Models.CartDish", b =>
+                {
+                    b.HasOne("DeliveryApp.Models.Cart", null)
+                        .WithMany("CartDishes")
+                        .HasForeignKey("CartId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -374,6 +404,11 @@ namespace DeliveryApp.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("DeliveryApp.Models.Cart", b =>
+                {
+                    b.Navigation("CartDishes");
                 });
 #pragma warning restore 612, 618
         }

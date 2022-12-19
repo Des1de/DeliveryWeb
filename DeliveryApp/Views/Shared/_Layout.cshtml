@@ -25,7 +25,9 @@
                     <li><a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index">Главная</a></li>
                     <li><a class="nav-link text-white" asp-area="" asp-controller="Menu" asp-action="Index">Меню</a></li>
                     <li><a class="nav-link text-white" asp-area="" asp-controller="Address" asp-action="Index">Адреса</a></li>
+                    @if (User.Identity.IsAuthenticated){
                     <li><a class="nav-link text-white" asp-area="" asp-controller="Cart" asp-action="Index">Корзина</a></li>
+                    }
                 </ul>
                 
                 @if (User.Identity.IsAuthenticated)

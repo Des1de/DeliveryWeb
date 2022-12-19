@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using DeliveryApp.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Internal;
 
 namespace DeliveryApp.Data
 {
@@ -17,5 +18,6 @@ namespace DeliveryApp.Data
         public DbSet<Dish> Dishes { get; set; } 
         public DbSet<Order> Orders { get; set; }    
         public DbSet<Cart> Carts { get; set; }
+        public DbSet<CartDish> CartDishes { get; set;}
     }
 }
