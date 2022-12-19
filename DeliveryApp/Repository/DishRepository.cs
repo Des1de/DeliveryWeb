@@ -50,5 +50,11 @@ namespace DeliveryApp.Repository
             var saved = _context.SaveChanges();
             return saved > 0 ? true : false;
         }
+
+        public bool Update(Dish dish)
+        {
+            _context.Update(dish);
+            return Save();
+        }
     }
 }

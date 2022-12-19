@@ -1,0 +1,24 @@
+﻿@using DeliveryApp.ViewModels;
+@model CreateAddressViewModel
+
+
+
+<form asp-action="Create" method="post" class="container md-12 gy-5" enctype="multipart/form-data">
+    <h1 class="h3 mb-3 fw-normal">Cоздание нового продукта</h1>
+    <div class="form-label-group">
+        <label asp-for="City">Город</label>
+        <input asp-for="City" class="form-control" id="floatingInput" placeholder="город">
+        <span asp-validation-for="City" class="text-danger"></span>
+    </div>
+    <div class="form-label-group">
+        <label asp-for="Street">Улица</label>
+        <input asp-for="Street" class="form-control" id="floatingInput" placeholder="улица">
+        <span asp-validation-for="Street" class="text-danger"></span>
+    </div>
+    <div class="form-label-group">
+        <label asp-for="House">Дом</label>
+        <input asp-for="House" class="form-control" id="floatingInput" placeholder="дом">
+        <span asp-validation-for="House" class="text-danger"></span>
+    </div>
+    <button class="w-100 btn btn-lg btn-primary" type="submit">Создание</button>
+</form>

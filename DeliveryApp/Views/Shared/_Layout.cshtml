@@ -24,42 +24,34 @@
                 <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                     <li><a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index">Главная</a></li>
                     <li><a class="nav-link text-white" asp-area="" asp-controller="Menu" asp-action="Index">Меню</a></li>
+                    <li><a class="nav-link text-white" asp-area="" asp-controller="Address" asp-action="Index">Адреса</a></li>
                     <li><a class="nav-link text-white" asp-area="" asp-controller="Cart" asp-action="Index">Корзина</a></li>
                 </ul>
-                <div class="flex-shrink-0 dropdown">
-                    <a href="#" class="d-block link-light text-decoration-none dropdown-toggle" id="dropdownUser"
-                       data-bs-toggle="dropdown" aria-expanded="false">Пользователь</a>
-                    <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser" style="">
-                        <li>
-                            <form action="/logout" method="post">
-                                <input type="submit" class="dropdown-item" value="Выход" />
-                            </form>
-                        </li>
-                    </ul>
-                </div>
-
-                <div>
-                    <a class="btn btn-outline-light me-2" asp-area="" asp-controller="Account" asp-action="Login">Вход</a>
-                    <a class="btn btn-warning" asp-area="" asp-controller="Account" asp-action="Registration">Регистрация</a>
-                </div>
+                
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <div>
+                        <a class="btn btn-warning" asp-area="" asp-controller="Account" asp-action="Logout">Выход</a>
+                    </div>
+                }
+                else
+                {
+                    <div>
+                        <a class=" btn btn-warning" asp-area="" asp-controller="Account" asp-action="Login">Вход</a>
+                        <a class="btn btn-warning" asp-area="" asp-controller="Account" asp-action="Register">Регистрация</a>
+                    </div>
+                }
+               
             </div>
         </div>
     </header>
-    <div class="container">
-        <main role="main" class="pb-3">
+    <div >
+        
             @RenderBody()
-        </main>
+        
     </div>
 
-    <footer class="py-5 bg-dark" th:fragment="header">
-        <div class="col-md-4 d-flex align-items-center">
-        
-
-        <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
-
-        </ul>
-        </div>
-    </footer>
+    
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

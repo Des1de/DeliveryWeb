@@ -1,25 +1,40 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@using DeliveryApp.ViewModels
+@model LoginViewModel
+
 @{
+    ViewData["Title"] = "Login";
 }
-<!DOCTYPE html>
-<html lang="en">
-
-<body class="d-flex flex-column min-vh-100">
-    <div id="header"></div>
-    <form action="landing.html" method="post" class="container">
-        <h1 class="h3 mb-3 fw-normal">Авторизация</h1>
-        <div class="form-floating">
-            <input type="text" class="form-control" name="username" id="floatingInput" placeholder="login">
-            <label for="floatingInput">Логин</label>
+<div class="row">
+    <div class="col-md-6 offset-3">
+        <p>
+            <h4>Авторизация</h4>
+        </p>
+        @if (TempData["Error"] != null)
+        {
+            <div class="col-md-12 alert alert-danger">
+                <span><b>Ошибка!</b> - @TempData["Error"]</span>
+            </div>
+        }
+        <div class="row">
+            <div class="col-md-8 offset-2">
+                <form asp-action="Login">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="EmailAddress" class="control-label"></label>
+                        <input asp-for="EmailAddress" class="form-control">
+                        <span asp-validation-for="EmailAddress" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Password" class="control-label"></label>
+                        <input asp-for="Password" class="form-control" />
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input class="btn btn-outline-success float right" type="submit" value="Войти" />
+                        <a class="btn btn-outline-secondary" asp-controller="Home" asp-action="Index">Отмена</a>
+                    </div>
+                </form>
+            </div>
         </div>
-        <div class="form-floating">
-            <input type="password" class="form-control" name="password" id="floatingPassword" placeholder="Password">
-            <label for="floatingPassword">Пароль</label>
-        </div>
-        <button class="w-100 btn btn-lg btn-primary" type="submit">Авторизироваться</button>
-
-    </form>
-</body>
-</html>
+    </div>
+</div>

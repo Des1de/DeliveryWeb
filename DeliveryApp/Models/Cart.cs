@@ -8,7 +8,6 @@ namespace DeliveryApp.Models
         [Key]
         public int Id { get; set; }
 
-        [ForeignKey("Dish")]
-        public int DishId { get; set;}
+       
     }
 }
