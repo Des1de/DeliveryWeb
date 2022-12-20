@@ -8,6 +8,8 @@ namespace DeliveryApp.Models
         [Key]
         public int Id { get; set; }
 
+    
+
         public List<CartDish> CartDishes { get; set; }
     }
 }

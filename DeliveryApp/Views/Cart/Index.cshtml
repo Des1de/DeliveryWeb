@@ -1,27 +1,38 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model IEnumerable<CartDish>
 
-    
-    <div class="container">
 
-        <div class="container mt-5">
-            <div class="col-mt3">
-                <div class="card">
-                    <div class="card-header">
-                        <h3>Заказ №228</h3>
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title">Пицца "Четыре сыра"</h5>
-                        <a href="order.html" class="btn btn-primary">Подтвердить заказ</a>
-                        <a href="#" class="btn btn-outline-danger">Отменить</a>
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-md-8"></div>
+
+    </div>
+    <div class="container mt-5">
+        <div class="row">
+
+            <div class="col-12 col-md-8"></div>
+            <div class="col-6 col-md-4">
+            </div>
+            @foreach (var item in Model)
+            {
+                <div class="col-md-4">
+
+                    <div class="card mb-4 box-shadow">
+                        <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=Thumbnail" alt="Thumbnail [100%x225]" style="height: 350px; width: 350px; display: block;" src="#" data-holder-rendered="true">
+                        <div class="card-body">
+                            <p class="card-text"></p>
+                            <p class="card-text">Руб</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    
+                                    <a class="btn btn-sm btn-outline-secondary" asp-area="" asp-controller="Menu" asp-action="Edit" asp-route-id="@item.Id">Редактировать</a>
+                                </div>
+
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
+            }
+
         </div>
     </div>
-
-
-  
+</div>

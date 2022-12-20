@@ -8,6 +8,9 @@ namespace DeliveryApp.Interfaces
         Task<IEnumerable<CartDish>> GetAllNoTracking();
         Task<CartDish> GetByIdAsync(int id);
         Task<CartDish> GetByIdAsyncNoTracking(int id);
+        Task<IEnumerable<CartDish>> GetAllByCartId(int id);
+
+        Task<Dish> GetDishByDishId(int dishId);
 
         bool Update(CartDish cartDish);
         bool Add(CartDish cartDish);

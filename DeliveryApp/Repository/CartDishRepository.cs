@@ -21,6 +21,11 @@ namespace DeliveryApp.Repository
         {
             return await _context.CartDishes.AsNoTracking().ToListAsync();
         }
+
+        public async Task<IEnumerable<CartDish>> GetAllByCartId(int id)
+        {
+            return await _context.CartDishes.Where(i => i.CartId == id).ToListAsync(); 
+        }
         public async Task<CartDish> GetByIdAsync(int id)
         {
             return await _context.CartDishes.FirstOrDefaultAsync(i => i.Id == id);
@@ -54,6 +59,11 @@ namespace DeliveryApp.Repository
         {
             _context.Update(cartDish);
             return Save();
+        }
+
+        public async Task<Dish> GetDishByDishId(int dishId)
+        {
+            return await _context.Dishes.FirstOrDefaultAsync(i => i.Id == dishId);
         }
     }
 }

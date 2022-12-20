@@ -8,7 +8,7 @@ namespace DeliveryApp.Interfaces
         Task<IEnumerable<Dish>> GetAllNoTracking();
         Task<Dish> GetByIdAsync(int id);
         Task<Dish> GetByIdAsyncNoTracking(int id);
-
+        
         bool Update(Dish dish); 
         bool Add(Dish dish);
         bool Edit(Dish dish);

@@ -21,14 +21,14 @@ namespace DeliveryApp.Data
 
                 //Users
                 var userManager = serviceScope.ServiceProvider.GetRequiredService<UserManager<AppUser>>();
-                string adminUserEmail = "des1de377@gmail.com";
+                string adminUserEmail = "des1de1337@gmail.com";
 
                 var adminUser = await userManager.FindByEmailAsync(adminUserEmail);
                 if (adminUser == null)
                 {
                     var newAdminUser = new AppUser()
                     {
-                        UserName = "Des1de",
+                        UserName = "Des1de1337",
                         Email = adminUserEmail,
                         EmailConfirmed = true,
                         UsersCart = new Cart(),
@@ -39,14 +39,14 @@ namespace DeliveryApp.Data
                     await userManager.AddToRoleAsync(newAdminUser, UserRoles.Admin);
                 }
 
-                string appUserEmail = "user@food.com";
+                string appUserEmail = "app_user@food.com";
 
                 var appUser = await userManager.FindByEmailAsync(appUserEmail);
                 if (appUser == null)
                 {
                     var newAppUser = new AppUser()
                     {
-                        UserName = "app-user",
+                        UserName = "app_user",
                         Email = appUserEmail,
                         EmailConfirmed = true,
                         UsersCart = new Cart(),
