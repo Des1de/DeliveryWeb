@@ -1,29 +1,38 @@
 ﻿using DeliveryApp.Data;
+using DeliveryApp.Interfaces;
 using DeliveryApp.Models;
+using DeliveryApp.Repository;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 using System.Security.Claims;
 
 namespace DeliveryApp.Controllers
 {
     public class CartController : Controller
     {
-        private readonly ApplicationDbContext _context;
-        private readonly UserManager<AppUser> _userManager;
+        private readonly ICartDishRepository _cartDishRepository;
+        private readonly ICartRepository _cartRepository; 
         private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly IDishRepository _dishRepository;
 
-        public CartController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, ApplicationDbContext context, IHttpContextAccessor httpContextAccessor)
+        public CartController(ICartDishRepository cartDishRepository, ICartRepository cartRepository, SignInManager<AppUser> signInManager, IHttpContextAccessor httpContextAccessor, IDishRepository dishRepository)
         {
-            _userManager = userManager;
+            _cartDishRepository = cartDishRepository;
+            _cartRepository = cartRepository;
             _httpContextAccessor = httpContextAccessor;
-            _context = context;
+            _dishRepository = dishRepository;
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             var userId = _httpContextAccessor.HttpContext.User.GetUserId();  
-
-            return View();
+            Cart cart = await _cartRepository.GetByUserIdAsync(userId);
+            IEnumerable<CartDish> cartDishes = await _cartDishRepository.GetAllByCartId(cart.Id);
+            return View(cartDishes);
         }
+
+        
+
     }
 }

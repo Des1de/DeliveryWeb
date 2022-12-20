@@ -1,5 +1,6 @@
 ﻿using DeliveryApp.Interfaces;
 using DeliveryApp.Models;
+using DeliveryApp.Repository;
 using DeliveryApp.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,11 +10,16 @@ namespace DeliveryApp.Controllers
     {
         private readonly IDishRepository _dishRepository;
         private readonly IPhotoService _photoService;
-
-        public MenuController(IDishRepository dishRepository, IPhotoService photoService)
+        private readonly ICartRepository _cartRepository;
+        private readonly ICartDishRepository _cartDishRepository;
+        private readonly IHttpContextAccessor _httpContextAccessor;
+        public MenuController(IDishRepository dishRepository, IPhotoService photoService, ICartRepository cartRepository, ICartDishRepository cartDishRepository, IHttpContextAccessor httpContextAccessor)
         {
             _dishRepository = dishRepository;
             _photoService = photoService;
+            _cartRepository = cartRepository;
+            _cartDishRepository = cartDishRepository;
+            _httpContextAccessor = httpContextAccessor;
         }
         public async Task<IActionResult> Index()
         {
@@ -27,6 +33,7 @@ namespace DeliveryApp.Controllers
             return View(dish);
         }
 
+        [HttpGet]
         public IActionResult Create()
         {
             return View();
@@ -57,6 +64,7 @@ namespace DeliveryApp.Controllers
             return View(dishVM);
         }
 
+        [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
             var dish = await _dishRepository.GetByIdAsync(id);
@@ -112,6 +120,36 @@ namespace DeliveryApp.Controllers
             _dishRepository.Update(dish);
 
             return RedirectToAction("Index");
+        }
+
+
+        [HttpGet]
+        public async Task<IActionResult> AddToCart(int id)
+        {
+            if (ModelState.IsValid)
+            {
+                Dish dish = await _dishRepository.GetByIdAsync(id);
+                var userId = _httpContextAccessor.HttpContext.User.GetUserId();
+                Cart cart = await _cartRepository.GetByUserIdAsync(userId);
+                CartDish cartDish = new CartDish
+                {
+                    DishId = id,
+                    Name = dish.Name,
+                    Description = dish.Description,
+                    Image = dish.Image,
+                    CartId = cart.Id,
+                    Price = dish.Price
+
+                };
+                _cartDishRepository.Add(cartDish);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                ModelState.AddModelError("", "Adding to cart failed");
+            }
+
+            return View("DishDetail", id);
         }
     }
 }

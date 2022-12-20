@@ -60,7 +60,7 @@ namespace DeliveryApp.Repository
         public async Task<Cart> GetByUserIdAsync(string userId)
         {
             AppUser user = await _context.AppUsers.FirstOrDefaultAsync(i => i.Id == userId);
-            Cart cart = user.UsersCart; 
+            Cart cart = await _context.Carts.FirstOrDefaultAsync(i => i.Id == user.CartId);
             return cart;
         }
     }

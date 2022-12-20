@@ -17,14 +17,14 @@
                 <div class="col-md-4">
 
                     <div class="card mb-4 box-shadow">
-                        <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=Thumbnail" alt="Thumbnail [100%x225]" style="height: 350px; width: 350px; display: block;" src="#" data-holder-rendered="true">
+                        <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=Thumbnail" alt="Thumbnail [100%x225]" style="height: 350px; width: 350px; display: block;" src="@item.Image" data-holder-rendered="true">
                         <div class="card-body">
-                            <p class="card-text"></p>
-                            <p class="card-text">Руб</p>
+                            <p class="card-text">@item.Name</p>
+                            <p class="card-text">@item.Price Руб</p>
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="btn-group">
-                                    
-                                    <a class="btn btn-sm btn-outline-secondary" asp-area="" asp-controller="Menu" asp-action="Edit" asp-route-id="@item.Id">Редактировать</a>
+                                    <a class="btn btn-sm btn-outline-primary">Удалить</a>
+                                   
                                 </div>
 
                             </div>

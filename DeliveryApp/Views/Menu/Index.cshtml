@@ -25,7 +25,10 @@
                                     <p class="card-text">@item.Price Руб</p>
                                     <div class="d-flex justify-content-between align-items-center">
                                         <div class="btn-group">
-                                            <a class="btn btn-sm btn-outline-primary">В корзину</a>
+                                    @if (User.Identity.IsAuthenticated)
+                                    {
+                                        <a class="btn btn-sm btn-outline-primary" asp-area=" " asp-controller="Menu" asp-action="AddToCart" asp-route-id="@item.Id" >В корзину</a>
+                                    }
                                             <a class="btn btn-sm btn-outline-primary" asp-area="" asp-controller="Menu" asp-action="DishDetail" asp-route-id="@item.Id">Подробнее</a>
                                             <a class="btn btn-sm btn-outline-secondary" asp-area="" asp-controller="Menu" asp-action="Edit" asp-route-id="@item.Id">Редактировать</a>
                                         </div>
