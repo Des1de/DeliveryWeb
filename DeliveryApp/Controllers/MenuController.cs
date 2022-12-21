@@ -45,7 +45,7 @@ namespace DeliveryApp.Controllers
             if(ModelState.IsValid)
             {
                 var result = await _photoService.AddPhotoAsync(dishVM.Image);
-                var dish = new Dish
+                 var dish = new Dish
                 {
                     Name = dishVM.Name,
                     Description = dishVM.Description,
@@ -150,6 +150,33 @@ namespace DeliveryApp.Controllers
             }
 
             return View("DishDetail", id);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var dishDetails = await _dishRepository.GetByIdAsync(id);
+            if (dishDetails == null) return View("Error");
+            return View(dishDetails);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        public async Task<IActionResult> DeleteClub(int id)
+        {
+            var dishDetails = await _dishRepository.GetByIdAsync(id);
+
+            if (dishDetails == null)
+            {
+                return View("Error");
+            }
+
+            if (!string.IsNullOrEmpty(dishDetails.Image))
+            {
+                _ = _photoService.DeletePhotoAsync(dishDetails.Image);
+            }
+
+            _dishRepository.Delete(dishDetails);
+            return RedirectToAction("Index");
         }
     }
 }

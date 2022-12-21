@@ -95,6 +95,30 @@ namespace DeliveryApp.Controllers
 
             return RedirectToAction("Index");
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var addressDetails = await _addressRepository.GetByIdAsync(id);
+            if (addressDetails == null) return View("Error");
+            return View(addressDetails);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        public async Task<IActionResult> DeleteClub(int id)
+        {
+            var addressDetails = await _addressRepository.GetByIdAsync(id);
+
+            if (addressDetails == null)
+            {
+                return View("Error");
+            }
+
+            
+
+            _addressRepository.Delete(addressDetails);
+            return RedirectToAction("Index");
+        }
     }
 }
 
