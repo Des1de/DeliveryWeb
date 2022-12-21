@@ -19,10 +19,16 @@
                         <p>
                             <br>
                              @if (User.Identity.IsAuthenticated)
-                {
-                             <a class="btn btn-sm btn-outline-primary" asp-area="" asp-controller="Menu" asp-action="Delete" asp-route-id="@Model.Id">Удалить</a>
-                            <a class="btn btn-outline-primary btn-rounded" href="#">В корзину</a>
-                }
+                            {
+            
+                            <a class="btn btn-sm btn-outline-primary" asp-area=" " asp-controller="Menu" asp-action="AddToCart" asp-route-id="@Model.Id">В корзину</a>
+
+                                @if (User.IsInRole("admin"))
+                                {
+                                    <a class="btn btn-sm btn-outline-primary" asp-area="" asp-controller="Menu" asp-action="Delete" asp-route-id="@Model.Id">Удалить</a>
+                                }
+                            
+                            }
                     </div>
                 </div>
             </div>

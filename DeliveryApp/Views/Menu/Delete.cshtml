@@ -4,26 +4,25 @@
 
 <form method="post" asp-action="Delete" enctype="multipart/form-data">
     <div class="form-group">
-        <label asp-for="Name">Title</label>
+        <label asp-for="Name">Название</label>
         <input asp-for="Name" disabled class="form-control" placeholder="Название">
         <span asp-validation-for="Name" class="text-danger"></span>
     </div>
     <div class="form-group">
-        <label asp-for="Description">Description</label>
+        <label asp-for="Description">Описание</label>
         <input asp-for="Description" disabled class="form-control" placeholder="Описание">
         <span asp-validation-for="Description" class="text-danger"></span>
     </div>
     <div class="form-group">
-        <label asp-for="Image">Image</label>
-        <input asp-for="Image" disabled type="file" class="form-control" placeholder="Image">
-        <span asp-validation-for="Image" class="text-danger"></span>
-
+        <label asp-for="Price">Цена</label>
+        <input asp-for="Price" disabled class="form-control" placeholder="Цена">
+        <span asp-validation-for="Price" class="text-danger"></span>
     </div>
 </form>
 <div class="form-group">
     <form action="Delete" method="post">
         <input type="hidden" asp-for="Id" />
-        <input type="submit" value="Confirm" class="btn btn-danger float-right mt-3" />
+        <input type="submit" value="Удалить" class="btn btn-danger float-right mt-3" />
     </form>
 </div>
 

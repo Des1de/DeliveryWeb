@@ -26,6 +26,8 @@ namespace DeliveryApp.Repository
         {
             return await _context.CartDishes.Where(i => i.CartId == id).ToListAsync(); 
         }
+
+        
         public async Task<CartDish> GetByIdAsync(int id)
         {
             return await _context.CartDishes.FirstOrDefaultAsync(i => i.Id == id);

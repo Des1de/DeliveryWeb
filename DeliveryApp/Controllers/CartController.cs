@@ -2,6 +2,7 @@
 using DeliveryApp.Interfaces;
 using DeliveryApp.Models;
 using DeliveryApp.Repository;
+using DeliveryApp.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -32,7 +33,27 @@ namespace DeliveryApp.Controllers
             return View(cartDishes);
         }
 
-        
+        [HttpGet]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var cartDishDetails = await _cartDishRepository.GetByIdAsync(id);
+            if (cartDishDetails == null) return View("Error");
+            return View(cartDishDetails);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        public async Task<IActionResult> DeleteClub(int id)
+        {
+            var cartDishDetails = await _cartDishRepository.GetByIdAsync(id);
+
+            if (cartDishDetails == null)
+            {
+                return View("Error");
+            }
+
+            _cartDishRepository.Delete(cartDishDetails);
+            return RedirectToAction("Index");
+        }
 
     }
 }

@@ -1,0 +1,19 @@
+﻿@using DeliveryApp.ViewModels;
+@model EditProfileViewModel
+<form asp-action="EditProfile" method="post" class="container md-12" enctype="multipart/form-data">
+    <h1 class="h3 mb-3 fw-normal">Редактирование продукта</h1>
+    <div class="form-label-group">
+        <label asp-for="HomeAddress">Домашний адрес</label>
+        <input asp-for="HomeAddress" class="form-control" id="floatingInput" placeholder="домашний адрес">
+
+        <span asp-validation-for="HomeAddress" class="text-danger"></span>
+    </div>
+    <div class="form-label-group">
+        <label asp-for="PhoneNumber">Номер мобильного телефона</label>
+        <input asp-for="PhoneNumber" class="form-control" id="floatingInput" placeholder="номер мобильного телефона">
+
+        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+    </div>
+   
+    <button class="w-100 btn btn-lg btn-primary" type="submit">Сохранить</button>
+</form>

@@ -1,5 +1,7 @@
 ﻿@model IEnumerable<Dish>
-
+@{
+    ViewData["Title"] = "Menu";
+}
 
     <div class="container">
         <div class="row">
@@ -30,8 +32,13 @@
                                         <a class="btn btn-sm btn-outline-primary" asp-area=" " asp-controller="Menu" asp-action="AddToCart" asp-route-id="@item.Id" >В корзину</a>
                                     }
                                             <a class="btn btn-sm btn-outline-primary" asp-area="" asp-controller="Menu" asp-action="DishDetail" asp-route-id="@item.Id">Подробнее</a>
-                                            <a class="btn btn-sm btn-outline-secondary" asp-area="" asp-controller="Menu" asp-action="Edit" asp-route-id="@item.Id">Редактировать</a>
-                                        </div>
+                                    
+                                    @if (User.Identity.IsAuthenticated && User.IsInRole("admin"))
+                                    {
+                                        <a class="btn btn-sm btn-outline-secondary" asp-area="" asp-controller="Menu" asp-action="Edit" asp-route-id="@item.Id">Редактировать</a>
+                                    } 
+
+                                    </div>
 
                                     </div>
                                 </div>

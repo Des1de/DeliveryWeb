@@ -1,5 +1,7 @@
 ﻿@model IEnumerable<CartDish>
-
+@{
+    ViewData["Title"] = "Cart";
+}
 
 <div class="container">
     <div class="row">
@@ -21,18 +23,12 @@
                         <div class="card-body">
                             <p class="card-text">@item.Name</p>
                             <p class="card-text">@item.Price Руб</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <a class="btn btn-sm btn-outline-primary">Удалить</a>
-                                   
-                                </div>
-
-                            </div>
+                            <a class="btn btn-sm btn-outline-primary" asp-area=" " asp-controller="Cart" asp-action="Delete" asp-route-id="@item.Id">Удалить из корзины</a>
                         </div>
                     </div>
                 </div>
             }
-
+            
         </div>
     </div>
 </div>

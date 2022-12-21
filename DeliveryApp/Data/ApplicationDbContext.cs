@@ -19,5 +19,6 @@ namespace DeliveryApp.Data
         public DbSet<Order> Orders { get; set; }    
         public DbSet<Cart> Carts { get; set; }
         public DbSet<CartDish> CartDishes { get; set;}
+        public DbSet<OrderDish> OrderDishes { get; set; }
     }
 }
