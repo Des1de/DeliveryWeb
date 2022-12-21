@@ -22,6 +22,7 @@ builder.Services.AddScoped<ICartDishRepository, CartDishRepository>();
 builder.Services.AddScoped<ICartRepository, CartRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IOrderDishRepository, OrderDishRepository>();
+builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 builder.Services.Configure<CloudinarySettings>(builder.Configuration.GetSection("CloudinarySettings"));
 builder.Services.AddScoped<IPhotoService, PhotoService>();
 builder.Services.AddDbContext<ApplicationDbContext>(options =>

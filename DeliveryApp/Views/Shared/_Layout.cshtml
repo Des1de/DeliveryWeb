@@ -27,10 +27,12 @@
                     <li><a class="nav-link text-white" asp-area="" asp-controller="Address" asp-action="Index">Адреса</a></li>
                     @if (User.Identity.IsAuthenticated){
                     <li><a class="nav-link text-white" asp-area="" asp-controller="Cart" asp-action="Index">Корзина</a></li>
+                        <li><a class="nav-link text-white" asp-area="" asp-controller="Order" asp-action="UserOrders">Ваши заказы</a></li>
                     }
                     @if (User.Identity.IsAuthenticated && User.IsInRole("admin"))
                     {
                         <li><a class="nav-link text-white" asp-area="" asp-controller="User" asp-action="Index">Пользователи</a></li>
+                        <li><a class="nav-link text-white" asp-area="" asp-controller="Order" asp-action="Index">Список заказов</a></li>
                     }
                 </ul>
                 

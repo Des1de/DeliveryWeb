@@ -9,16 +9,17 @@ namespace DeliveryApp.Models
         public int Id { get; set; }
 
       
-
+        public string DeliveryAddress { get; set; }
+        public string RestarauntAddress { get; set; }
         public int TotalPrice { get; set; } 
 
         [ForeignKey("Address")]
         public int? AddressId { get; set; }
 
 
-        public List<OrderDish> OrderDishes { get; set; }
 
         [ForeignKey("AppUser")]
-        public int? UserId { get; set;}
+        public string UserId { get; set;}
+
     }
 }

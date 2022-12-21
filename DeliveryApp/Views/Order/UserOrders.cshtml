@@ -1,0 +1,55 @@
+﻿@using DeliveryApp.ViewModels;
+@model List<OrderViewModel>
+<body>
+    <div class="container p-3">
+        <div class="row pt-4">
+            <div class="col-6">
+                <h2 class="text-primary">Список заказов</h2>
+            </div>
+        </div>
+    </div>
+
+    <table class=" table table-bordered table-striped" style="width:100%">
+        <thead>
+            <tr>
+                <th>
+                    Id
+                </th>
+                <th>
+                    Итоговая цена
+                </th>
+                <th>
+                    Адрес доставки
+                </th>
+                <th>
+                    Адрес ресторана
+                </th>
+                <th>
+                    Действие
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var obj in Model)
+            {
+                <tr>
+                    <td width="17%">
+                        @obj.Id
+                    </td>
+                    <td width="17%">
+                        @obj.TotalPrice
+                    </td>
+                    <td width="17%">
+                        @obj.DeliveryAddress
+                    </td>
+                    <td width="17%">
+                        @obj.RestarauntAddress
+                    </td>
+                    <td width="17%">
+                        <a class="btn btn-sm btn-outline-primary" asp-area="" asp-controller="Order" asp-action="OrderDetail" asp-route-id="@obj.Id">Товары</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</body>

@@ -31,4 +31,11 @@
             
         </div>
     </div>
+    @if (Model.Any())
+    {
+        <div class="row gx-5 justify-content-center">
+            <a class="btn btn-sm btn-outline-primary" asp-area=" " asp-controller="Cart" asp-action="ChooseAddress">Заказать</a>
+        </div>
+    }
+
 </div>

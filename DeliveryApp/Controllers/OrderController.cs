@@ -1,83 +1,69 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using DeliveryApp.Interfaces;
+using DeliveryApp.Models;
+using DeliveryApp.ViewModels;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DeliveryApp.Controllers
 {
     public class OrderController : Controller
     {
-        // GET: OrderController
-        public ActionResult Index()
+        private readonly IOrderDishRepository _orderDishRepository;
+        private readonly IOrderRepository _orderRepository;
+        private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly IUserRepository _userRepository;
+        public OrderController(IOrderDishRepository orderDishRepository, IOrderRepository orderRepository, IHttpContextAccessor httpContextAccessor, IUserRepository userRepository)
         {
-            return View();
+            _orderDishRepository = orderDishRepository;
+            _orderRepository = orderRepository;
+            _httpContextAccessor = httpContextAccessor;
+            _userRepository = userRepository;
         }
 
-        // GET: OrderController/Details/5
-        public ActionResult Details(int id)
+        public async Task<IActionResult> Index()
         {
-            return View();
-        }
-
-        // GET: OrderController/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: OrderController/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
-        {
-            try
+            IEnumerable<Order> orders = await _orderRepository.GetAll();
+            List<OrderViewModel> result = new();
+            foreach(var order in orders)
             {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+                var userId = _httpContextAccessor.HttpContext.User.GetUserId();
+                var user = await _userRepository.GetUserById(userId);
+                var orderViewModel = new OrderViewModel
+                {
+                    Id = order.Id,
+                    TotalPrice = order.TotalPrice,
+                    DeliveryAddress = order.DeliveryAddress,
+                    RestarauntAddress = order.RestarauntAddress,
+                    UserEmail = user.Email
+                };
+                result.Add(orderViewModel);
+            };
+            return View(result);
         }
 
-        // GET: OrderController/Edit/5
-        public ActionResult Edit(int id)
+        public async Task<IActionResult> UserOrders()
         {
-            return View();
+            var userId = _httpContextAccessor.HttpContext.User.GetUserId();
+            IEnumerable<Order> orders = await _orderRepository.GetAllByUserId(userId);
+            List<OrderViewModel> result = new();
+            foreach (var order in orders)
+            {
+                var orderViewModel = new OrderViewModel
+                {
+                    Id = order.Id,
+                    TotalPrice = order.TotalPrice,
+                    DeliveryAddress = order.DeliveryAddress,
+                    RestarauntAddress = order.RestarauntAddress,
+                };
+                result.Add(orderViewModel);
+            };
+            return View(result); 
         }
 
-        // POST: OrderController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public async Task<IActionResult> OrderDetail(int orderId)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: OrderController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: OrderController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            IEnumerable <OrderDish> orderDishes = await _orderDishRepository.GetAllByOrderId(orderId);
+            return View(orderDishes);
         }
     }
 }

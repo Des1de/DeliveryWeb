@@ -161,7 +161,7 @@ namespace DeliveryApp.Controllers
         }
 
         [HttpPost, ActionName("Delete")]
-        public async Task<IActionResult> DeleteClub(int id)
+        public async Task<IActionResult> DeleteDish(int id)
         {
             var dishDetails = await _dishRepository.GetByIdAsync(id);
 
@@ -178,5 +178,7 @@ namespace DeliveryApp.Controllers
             _dishRepository.Delete(dishDetails);
             return RedirectToAction("Index");
         }
+
+
     }
 }
